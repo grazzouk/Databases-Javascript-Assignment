@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<title>
+	 Javascript Assignment
+	 </title>
+	<meta charset="UTF-8">
+	<style type = "text/css">
+		textarea{
+		height:300px; 
+		width: 75%; 
+		font-size: 14px; 
+		font-family:Arial, Helvetica, sans-serif; 
+		}
+		textarea.bold {
+		font-weight:bold
+		}
+		textarea.italic {
+		font-style:italic
+		}
+		textarea.underlined {
+		text-decoration: underline;
+		}
+		p{
+		display:inline
+		}
+	    
+		.dropButton {
+			background-color: #f2f2f2;
+			color: black;
+			font-size: 14px;
+			border: none;
+			cursor: pointer;
+		}
+
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 160px;
+			box-shadow: 0px 8px 14px 0px rgba(0,0,0,0.2);
+		}
+
+		.dropdown-content a {
+			color: black;
+			text-decoration: none;
+			display: block;
+		}
+		.dropdown-content a:hover {
+		background-color: #cccccc
+		}
+		
+		.dropdown:hover .dropButton {
+		background-color: #cccccc;
+		}
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+	</style>
+	</head>
+<body>
+	<textarea id = "user_text" ></textarea> <br>
+	<input type = "button" value = "Bold" 
+	onclick = '
+	makeBold();
+	'/>
+
+	<input type = "button" value = "Italics"
+	onclick = '
+	makeItalic();
+	'/>
+
+	<input type = "button" value = "Underlined"
+	onclick = '
+	makeUnderlined();
+	'/>
+
+	<div class="dropdown">
+		<button class="dropButton">Text Color</button>
+		<div class="dropdown-content">
+		<a href="#"
+		onclick = '
+		changeColor("black")
+		'>
+		Black</a>
+		
+		<a href="#" 
+		onclick = '
+		changeColor("blue")
+		'>
+		Blue</a>
+		
+		<a href="#"
+		onclick = '
+		changeColor("green")
+		'>
+		Green</a>
+		
+		<a href="#"
+		onclick = '
+		changeColor("red")
+		'>
+		Red</a>
+		
+		<a href="#"
+		onclick = '
+		changeColor("yellow")
+		'>
+		Yellow</a>
+		
+		<a href="#"
+		onclick = '
+		changeColor("orange")
+		'>
+		Orange</a>
+	</div>
+	</div>
+
+	<div class="dropdown">		
+		<button class="dropButton">Font</button>
+		<div class="dropdown-content">
+		<a href = "#"
+		onclick = '
+		changeFont("Arial, Helvetica, sans-serif")
+		'>
+		Arial</a>
+
+		<a href = "#"
+		onclick = '
+		changeFont("Comic Sans MS, cursive, sans-serif")
+		'>
+		Comic Sans</a>
+		
+		<a href = "#"
+		onclick = '
+		changeFont("Courier New, Courier, monospace")
+		'>
+		Courier New</a>
+
+		<a href = "#"
+		onclick = '
+		changeFont("Georgia, serif")
+		'>
+		Georgia</a>
+
+		<a href = "#"
+		onclick = '
+		changeFont("Tahoma, Geneva, sans-serif")
+		'>
+		Tahoma</a>
+
+			
+		<a href = "#"
+		onclick = '
+		changeFont("Times New Roman, Times, serif")
+		'>
+		Times New Roman</a>
+
+		<a href = "#"
+		onclick = '
+		changeFont("Verdana, Geneva, sans-serif")
+		'>
+		Veranda</a>
+
+		</div>
+	</div>
+	<p> <br/> Text Background Color: <br/> Red: </p>
+		<input type = "text" value = 255 id = "redInput"/>
+	<p> Green: </p> 
+		<input type = "text" value = 255 id = "greenInput"/>
+	<p> Blue: </p>
+		<input type = "text" value = 255 id = "blueInput"/>
+
+
+		<input type = "button" value = "Change Color"
+		onclick = '
+		changeTextBackground();
+		'/>
+	
+	<script type='text/javascript'>
+		var bold = false;
+		var italic = false;
+		var underlined = false;
+		function makeBold()
+		{
+			if (bold === false) {
+			document.getElementById("user_text").className += "bold ";
+			bold = true;
+			}
+			else {
+			document.getElementById("user_text").className =
+			document.getElementById("user_text").className.replace
+			( /(?:^|\s)bold(?!\S)/g , '' );
+			bold = false;
+			}
+		}
+		
+		function makeItalic()
+		{
+			if (italic === false) {
+			document.getElementById("user_text").className += "italic ";
+			italic = true;
+			}
+			else {
+			document.getElementById("user_text").className =
+			document.getElementById("user_text").className.replace
+			( /(?:^|\s)italic(?!\S)/g , '' );
+			italic = false;
+			}
+		}
+		
+			function makeUnderlined()
+		{
+			if (underlined === false) {
+			document.getElementById("user_text").className += "underlined ";
+			underlined = true;
+			}
+			else {
+			document.getElementById("user_text").className =
+			document.getElementById("user_text").className.replace
+			( /(?:^|\s)underlined(?!\S)/g , '' );
+			underlined = false;
+			}
+		}
+			function changeColor(c)
+		{ 
+			document.getElementById("user_text").style.color = c;
+		}
+			function changeFont(f)
+		{ 
+			document.getElementById("user_text").style.fontFamily = f;
+		}
+			function changeTextBackground(r, g, b)
+		{
+			r = document.getElementById("redInput").value;
+			g = document.getElementById("greenInput").value;
+			b = document.getElementById("blueInput").value;
+			if ( r<=255 && r>=0 && g<=255 && g>=0 && b<=255 && b>=0){
+				document.getElementById("user_text").style.background = "rgb(" + r + "," + g + "," + b + ")";
+			}
+			else {
+			alert( "The red, green, and blue values all have to be positive numbers between 0 and 255");
+			}
+		}
+	</script>
+	
+</body>
+
+</html>
